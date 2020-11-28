@@ -250,11 +250,13 @@ public class EjemploGrafos {
                     case 1:
                         System.out.println("Ingresa el vertice: ");
                         String nombre = ent.nextLine();
+                        ent.nextLine();
                         gm.nuevoVertice(nombre);
                         break;
                     case 2:
                         System.out.println("Ingresa el origen: ");
                         String a = ent.nextLine();
+                        ent.nextLine();
                         System.out.println("Ingresa el destino: ");
                         String b = ent.nextLine();
                         try {
@@ -267,7 +269,8 @@ public class EjemploGrafos {
                     case 3:
                         System.out.println("Ingresa verice origen a buscar: ");
                         a = ent.nextLine();
-                        System.out.println("Ingresa el vertice destino");
+                        ent.nextLine();
+                        System.out.println("Ingresa el vertice destino: ");
                         b = ent.nextLine();
                         try {
                         	System.out.println(gm.adyacente(a, b)?"Son adyacentes":"No son adyacentes!");
@@ -277,8 +280,9 @@ public class EjemploGrafos {
                         
                         break;
                     case 4:
-                    	System.out.println("Ingresa el vertice origen a recorrer");
+                    	System.out.println("Ingresa el vertice origen a recorrer:");
             			String origen = ent.nextLine();
+            			ent.nextLine();
             			try {
             				gm.recorrerAnchura(gm, origen);
             				System.out.println();
