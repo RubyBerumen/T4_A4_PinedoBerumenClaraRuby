@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 class Vertice{
 	String nombre;
@@ -91,7 +94,7 @@ class GrafoMatriz{
         v = g.numVertice(org);
         
         int CLAVE =-1;
-        if (v < 0) throw new Exception("V?tice origen no existe");
+        if (v < 0) throw new Exception("Vétice origen no existe");
         
         ColaLista cola = new ColaLista();
         m = new int[g.numVerts];
@@ -104,7 +107,7 @@ class GrafoMatriz{
         	Integer cw;
         	cw = (Integer) cola.quitar();
         	w = cw.intValue();
-        	System.out.println("V?tice " + g.verts[w] + "visitado");
+        	System.out.println("Vétice " + g.verts[w] + "visitado");
         	for (int u = 0; u < g.numVerts; u++)
         	if ((g.matAd[w][u] == 1) && (m[u] == CLAVE))
         	{
@@ -223,12 +226,83 @@ class Arco{
 public class EjemploGrafos {
 
 	public static void main(String[] args) {
-
-
 		
+		Scanner ent = new Scanner (System.in);
 		
+		System.out.println("Ingresa el número máximo de vertices: ");
+		int numV = ent.nextInt();
+		GrafoMatriz gm = new GrafoMatriz(numV);
 		
+		boolean salir = false;
 		
+		do {
+			System.out.println("1. Agregar vertice");
+            System.out.println("2. Agregar arco");
+            System.out.println("3. Saber si son adyacentes");
+            System.out.println("4. Recorrer");
+            System.out.println("5. Salir");
+           
+            try {
+            	System.out.println("Escribe una de las opciones");
+                int opcion = ent.nextInt();
+ 
+                switch (opcion) {
+                    case 1:
+                        System.out.println("Ingresa el vertice: ");
+                        String nombre = ent.nextLine();
+                        gm.nuevoVertice(nombre);
+                        break;
+                    case 2:
+                        System.out.println("Ingresa el origen: ");
+                        String a = ent.nextLine();
+                        System.out.println("Ingresa el destino: ");
+                        String b = ent.nextLine();
+                        try {
+							gm.nuevoArco(a, b);
+						} catch (Exception e) {
+							System.out.println("Debes ingresar vertices correctos");
+						}
+                        
+                        break;
+                    case 3:
+                        System.out.println("Ingresa verice origen a buscar: ");
+                        a = ent.nextLine();
+                        System.out.println("Ingresa el vertice destino");
+                        b = ent.nextLine();
+                        try {
+                        	System.out.println(gm.adyacente(a, b)?"Son adyacentes":"No son adyacentes!");
+						} catch (Exception e) {
+							System.out.println("Debes ingresar vertices correctos");
+						}
+                        
+                        break;
+                    case 4:
+                    	System.out.println("Ingresa el vertice origen a recorrer");
+            			String origen = ent.nextLine();
+            			try {
+            				gm.recorrerAnchura(gm, origen);
+            				System.out.println();
+            			} catch (Exception e) {
+            				System.out.println("Debes ingresar vertices correctos");
+            			}
+                        break;
+                    case 5:
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Debes ingresar números entre 1 y 5");
+                }
+				
+			} catch (InputMismatchException e) {
+				System.out.println("Debes ingresar un número");
+                ent.next();
+				
+			}
+            
+            
+			
+		}while (!salir);//while
+	
 		
 		
 	}
