@@ -1,3 +1,9 @@
+
+/*
+ * REFERENCIAS
+ * Joyanes, J., & Zahonero, I. (2008). Estructuras de datos en Java. McGraw-Hill.
+ */
+
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -177,7 +183,7 @@ class ColaLista {
     		aux = frente.elemento;
     		frente = frente.siguiente;
     	}else
-    		throw new Exception("Eliminar de una cola vac?");
+    		throw new Exception("Eliminar de una cola vacia");
     	return aux;
     }
     
@@ -190,7 +196,7 @@ class ColaLista {
     
     public Object frenteCola() throws Exception{
     	if (colaVacia()){
-    		throw new Exception("Error: cola vac?");
+    		throw new Exception("Error: cola vacia");
         }
     	return (frente.elemento);
     }
