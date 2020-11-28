@@ -119,6 +119,85 @@ class GrafoMatriz{
 }//class GrafoMatriz
 
 
+class Nodo {
+	Object elemento;
+	Nodo siguiente;
+	int dato;
+	
+	public Nodo(Object x){
+		elemento = x;
+		siguiente = null;
+		}
+	public Nodo(int x){
+		dato = x;
+	    siguiente = null;
+	}
+	public Nodo(int x, Nodo n){
+	    dato = x;
+	    siguiente = n;
+	}
+	
+	public int getDato(){
+	    return dato;
+	}
+	public Nodo getEnlace(){
+	    return siguiente;
+	}
+	public void setEnlace(Nodo enlace){
+	    this.siguiente = enlace;
+	}
+}//Class Nodo
+
+
+
+class ColaLista { 
+	protected Nodo frente;
+	protected Nodo fin;
+	
+	public ColaLista(){
+		frente = fin = null;
+	}
+	
+    public void insertar(Object elemento){
+    	Nodo a;
+        a = new Nodo(elemento);
+        if (colaVacia()){
+        	frente = a;
+        	}else{
+        		fin.siguiente = a;
+        	}
+        fin = a;
+    }
+    
+    public Object quitar() throws Exception{
+    	Object aux;
+    	if (!colaVacia()){
+    		aux = frente.elemento;
+    		frente = frente.siguiente;
+    	}else
+    		throw new Exception("Eliminar de una cola vac?");
+    	return aux;
+    }
+    
+    public void borrarCola(){
+    	for (; frente != null;){
+    		frente = frente.siguiente;
+        }
+    	System.gc();
+    }
+    
+    public Object frenteCola() throws Exception{
+    	if (colaVacia()){
+    		throw new Exception("Error: cola vac?");
+        }
+    	return (frente.elemento);
+    }
+    
+    public boolean colaVacia(){
+    	return (frente == null);
+    }
+    
+}//class ColaLista
 
 
 
